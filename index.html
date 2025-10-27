@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assembleia de Deus em Água Fria</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-1: #f7f5f1;
+      --bg-2: #ffffff;
+      --text: #1e293b;
+      --accent: #2c5282;
+      --muted: #64748b;
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(44,82,130,0.08);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body {
+      font-family:'Poppins',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(44,82,130,0.03), transparent 10%),
+        radial-gradient(800px 400px at 90% 90%, rgba(44,82,130,0.02), transparent 10%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 60%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      scroll-behavior:smooth;
+      padding-bottom:40px;
+    }
+
+    img {max-width:100%; display:block;}
+    a {color:var(--accent); text-decoration:none;}
+
+    .container {max-width:1100px;margin:0 auto;padding:28px 20px;}
+
+    /* Header */
+    header.header {
+      position:relative;
+      border-radius:12px;
+      overflow:hidden;
+      margin:18px 0 36px;
+      display:flex;
+      align-items:center;
+      min-height:220px;
+      background: linear-gradient(180deg, rgba(44,82,130,0.12), rgba(44,82,130,0.04));
+      box-shadow: 0 8px 30px rgba(16,24,40,0.06);
+    }
+
+    .header .overlay {
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06)),
+        url('igreja-bg.jpg') center/cover no-repeat;
+      opacity:0.95;
+      filter: grayscale(20%) contrast(90%) saturate(80%) blur(1px);
+    }
+
+    .header-content {
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      width:100%;
+      text-align:center;
+      padding:36px 28px;
+      gap:20px;
+    }
+
+    /* Linha com logo e nome */
+    .header-brand {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      text-align:left;
+    }
+
+    .header-brand img {
+      width:70px;
+      height:70px;
+      object-fit:contain;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 4px 12px rgba(44,82,130,0.1);
+    }
+
+    .header-text {
+      text-align:left;
+    }
+
+    .header h1 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:2rem;
+      color:var(--text);
+    }
+
+    .slogan {
+      font-size:1rem;
+      color:var(--muted);
+      font-weight:300;
+    }
+
+    .header-cta {
+      margin-top:10px;
+    }
+
+    .pill {
+      display:inline-block;
+      background:linear-gradient(90deg, rgba(44,82,130,0.12), rgba(44,82,130,0.06));
+      color:var(--accent);
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--glass-border);
+      font-weight:600;
+      font-size:0.95rem;
+    }
+
+    /* Seções */
+    section {padding:28px 0;text-align:center;}
+    section h2 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.6rem;
+      color:var(--accent);
+      margin-bottom:20px;
+    }
+
+    /* Anúncios */
+    .anuncios-container {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .anuncios-container .cartaz {
+      flex: 0 0 270px;
+      max-width: 270px;
+    }
+
+    .anuncios-container .cartaz img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+    }
+
+    .anuncios-container .info {
+      flex: 1 1 300px;
+      text-align: left;
+      color: var(--text);
+    }
+
+    .anuncios-container .info p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    @media(max-width:900px){
+      .anuncios-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .anuncios-container .info {
+        text-align: center;
+      }
+    }
+
+    /* Cultos */
+    .grid {
+      display:grid;
+      gap:18px;
+      justify-content:center;
+    }
+    .cultos .grid {
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+
+    .culto-card {
+      background:var(--card-bg);
+      border:1px solid var(--glass-border);
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(16,24,40,0.04);
+      transition:transform .28s, box-shadow .28s;
+      text-align:left;
+    }
+    .culto-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 14px 38px rgba(16,24,40,0.08);
+    }
+    .culto-card h3 {font-size:1.05rem;margin-bottom:6px;}
+    .culto-card p {color:var(--muted);font-size:0.98rem;}
+
+    /* Pastores */
+    .pastor-card {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:18px;
+      border-radius:14px;
+      background:var(--card-bg);
+      border:1px solid var(--glass-border);
+      box-shadow:0 6px 18px rgba(16,24,40,0.035);
+      max-width:400px;
+      margin:0 auto;
+    }
+    .pastor-foto img {
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      border:4px solid #fff;
+      box-shadow:0 8px 24px rgba(44,82,130,0.06);
+      object-fit:cover;
+    }
+    .pastor-info h3 {margin-top:10px;font-size:1.1rem;font-weight:600;}
+    .pastor-info p {color:var(--muted);font-size:0.98rem;}
+
+    /* Avisos */
+    .avisos-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      justify-content:center;
+    }
+    .aviso-card {
+      width:260px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,250,250,0.9));
+      border:1px solid var(--glass-border);
+      border-radius:12px;
+      padding:16px;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(16,24,40,0.04);
+      transition:transform .22s ease, box-shadow .22s ease;
+      text-align:left;
+    }
+    .aviso-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 14px 36px rgba(16,24,40,0.08);
+    }
+    .aviso-card h3 {color:var(--accent);margin-bottom:8px;}
+    .aviso-card p {color:var(--muted);}
+
+    /* Modal */
+    .modal {
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      background:rgba(8,12,20,0.6);
+      backdrop-filter:blur(6px);
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .modal .modal-inner {
+      max-width:920px;
+      width:100%;
+      background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,250,250,0.98));
+      border-radius:12px;
+      padding:18px;
+      position:relative;
+      box-shadow:0 24px 60px rgba(16,24,40,0.18);
+    }
+    .modal img {max-height:70vh;border-radius:8px;}
+    .close {
+      position:absolute; right:14px; top:10px;
+      font-size:26px; color:var(--muted);
+      cursor:pointer; background:none; border:none;
+    }
+    .download-btn {
+      display:inline-block;margin-top:12px;padding:10px 16px;border-radius:10px;border:1px solid var(--glass-border);
+      background:linear-gradient(90deg,rgba(44,82,130,0.12),rgba(44,82,130,0.06));
+      color:var(--accent);font-weight:600;
+    }
+
+    /* Versículo */
+    .versiculo {
+      font-style:italic;
+      font-family:'Cormorant Garamond',serif;
+      color:var(--accent);
+      font-size:1.05rem;
+      padding:20px;
+      background:linear-gradient(90deg,rgba(44,82,130,0.02),transparent);
+      border-radius:8px;
+      border-left:4px solid rgba(44,82,130,0.12);
+      max-width:600px;
+      margin:20px auto 0;
+      text-align:center;
+    }
+    .versiculo span {display:block;margin-top:8px;font-size:0.95rem;color:var(--muted);}
+
+    footer {
+      margin-top:40px;
+      text-align:center;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    /* Animações */
+    .aparecer{opacity:0;transform:translateY(18px);transition:all .7s ease-out}
+    .aparecer.visivel{opacity:1;transform:none}
+
+    @media(max-width:600px){
+      .header-brand{flex-direction:column;text-align:center;}
+      .header-brand img{margin-bottom:10px;}
+      .header-text{text-align:center;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header aparecer">
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="header-content">
+        <div class="header-brand">
+          <img src="B0EB92A5-BF93-431D-9115-FB670ABB878F.jpeg" alt="Logo da Igreja">
+          <div class="header-text">
+            <h1>Assembleia de Deus em Água Fria</h1>
+            <p class="slogan">“Jesus salva, cura, batiza com Espírito Santo e em breve voltará.”</p>
+          </div>
+        </div>
+        <div class="header-cta">
+          <div class="pill">Comunidade • Acolhimento</div>
+        </div>
+      </div>
+    </header>
+
+
+
+    <!-- Anúncios -->
+   <!-- <section class="anuncios aparecer">
+      <h2>Anúncios</h2>
+      <div class="anuncios-container">
+        <div class="cartaz">
+          <img src="5EF86BC1-251A-4483-8F0C-834F18B08EE4.jpeg" alt="Cartaz de anúncio">
+        </div>
+        <div class="info">
+          <p><strong>Título do Anúncio:</strong> Festa de Confraternização</p>
+          <p><strong>Data:</strong> Domingo, 03/11/2025</p>
+          <p><strong>Horário:</strong> 14h às 18h</p>
+          <p><strong>Local:</strong> Sede da igreja</p>
+          <p>Traga sua família e amigos para celebrarmos juntos!</p>
+        </div>
+      </div>
+    </section>-->
+
+
+
+
+    <!-- Cultos -->
+    <section class="cultos aparecer">
+      <h2>Horários de Cultos</h2>
+      <div class="grid">
+        <div class="culto-card aparecer-esq">
+          <h3>Sede</h3>
+          <p>Domingo e Sexta às 19h</p>
+        </div>
+        <div class="culto-card aparecer-dir">
+          <h3>Congregação Monte Horebe (Tapera)</h3>
+          <p>Quinta e Sábado às 19h</p>
+        </div>
+        <div class="culto-card aparecer-esq">
+          <h3>Congregação Monte Sinai (Tapera)</h3>
+          <p>Quarta e Sábado às 19h</p>
+        </div>
+        <div class="culto-card aparecer-dir">
+          <h3>Escola Bíblica Dominical</h3>
+          <p>Sede e Congregações: Todo Domingo às 8h</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pastores -->
+    <section class="pastores aparecer">
+      <h2>Quadro Ministerial</h2>
+      <div class="pastor-card aparecer">
+        <div class="pastor-foto">
+          <img src="D0F3F6A8-55DC-461F-A173-EE01C9E1A642.jpeg" alt="Pr. Jonathas Guedes e Missionária Mara Guedes">
+        </div>
+        <div class="pastor-info">
+          <h3>Pr. Jonathas Guedes</h3>
+          <p>e Missionária Mara Guedes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Avisos -->
+    <section class="avisos aparecer">
+      <h2>IMPORTANTE</h2>
+      <div class="avisos-container">
+        <!--<div class="aviso-card aparecer-dir" onclick="abrirItem('c.jpeg')">
+          <h3>Festa das Crianças</h3>
+          <p>Ver cartaz completo</p>
+        </div>-->
+
+        <div class="aviso-card aparecer" onclick="abrirItem('https://surveymars.com/q/78gedyMKo')">
+          <h3>Pedido de oração</h3>
+          <p>Clique aqui para fazer seu pedido</p>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+      <div class="modal-inner">
+        <button class="close" onclick="fecharModal()">&times;</button>
+        <img id="modalImage" src="" alt="Aviso">
+        <a id="downloadBtn" href="" download class="download-btn">Baixar</a>
+      </div>
+    </div>
+
+    <!-- Versículo -->
+    <section class="versiculo aparecer">
+      <blockquote>“Mas os que esperam no Senhor renovarão as suas forças.”<br><span>Isaías 40:31</span></blockquote>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Assembleia de Deus em Água Fria. Todos os direitos reservados.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function abrirItem(item) {
+      if (!item) return;
+      if (item.startsWith("http")) {
+        window.open(item, "_blank");
+      } else if (item.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const downloadBtn = document.getElementById("downloadBtn");
+        modal.style.display = "flex";
+        modalImg.src = item;
+        downloadBtn.href = item;
+      } else {
+        alert("Conteúdo não reconhecido.");
+      }
+    }
+
+    function fecharModal(){
+      const modal=document.getElementById("imageModal");
+      modal.style.display="none";
+      document.getElementById("modalImage").src="";
+    }
+
+    document.addEventListener('keydown',e=>{
+      if(e.key==="Escape"){
+        const modal=document.getElementById("imageModal");
+        if(modal.style.display==="flex"){fecharModal();}
+      }
+    });
+
+    document.getElementById('imageModal').addEventListener('click',e=>{
+      if(e.target===e.currentTarget) fecharModal();
+    });
+
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('visivel');}
+      });
+    },{threshold:0.18});
+    document.querySelectorAll('.aparecer').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
