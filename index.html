@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Assembleia de Deus em Água Fria</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -130,74 +129,148 @@
       margin-bottom:20px;
     }
 
-    /* Anúncios */
+    /* Anúncios - NOVO ESTILO E ESTRUTURA */
     .anuncios-container {
       display: flex;
-      gap: 24px;
+      flex-direction: row; 
+      flex-wrap: wrap; 
+      gap: 36px; 
+      justify-content: center; 
       align-items: flex-start;
-      justify-content: center;
-      flex-wrap: wrap;
     }
 
-    .anuncios-container .cartaz {
-      flex: 0 0 270px;
-      max-width: 270px;
+    /* Container de CADA ANÚNCIO (imagem e info) */
+    .anuncio-item {
+      display: flex;
+      flex-direction: column; 
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+      padding: 16px;
+      text-align: left;
     }
 
-    .anuncios-container .cartaz img {
+    .anuncio-item .cartaz {
+      flex: 0 0 160px; 
+      max-width: 370px; 
+    }
+
+    .anuncio-item .cartaz img {
       width: 100%;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(16,24,40,0.04);
     }
 
-    .anuncios-container .info {
+    .anuncio-item .info {
       flex: 1 1 300px;
-      text-align: left;
-      color: var(--text);
+      padding: 10px 0 0;
     }
 
-    .anuncios-container .info p {
-      margin-bottom: 10px;
+    .anuncio-item .info p {
+      margin-bottom: 6px;
       font-size: 0.95rem;
     }
+    
+    /* Estilo para o Botão de Ação */
+    .anuncio-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background-color: var(--accent); 
+      color: var(--bg-2); 
+      font-weight: 600;
+      text-align: center;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      border: none;
+      font-size: 0.95rem;
+      text-decoration: none; 
+    }
 
-    @media(max-width:900px){
-      .anuncios-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .anuncio-btn:hover {
+      background-color: #244163; 
+      transform: translateY(-1px);
+    }
+
+    /* REGRA MÁGICA: MEDIA QUERY para telas grandes (computador) */
+    @media(min-width:768px){
+      .anuncio-item {
+        flex-direction: row; 
+        gap: 16px; 
+        max-width: 500px; 
+        min-width: 400px;
+        padding: 18px;
       }
-      .anuncios-container .info {
-        text-align: center;
+
+      .anuncio-item .info {
+        padding: 0; 
       }
     }
 
-    /* Cultos */
+    /* Garante que o botão ocupe a largura completa em celular */
+    @media(max-width:767px){
+      .anuncio-btn {
+        display: block;
+        width: 100%;
+      }
+    }
+
+
+    /* Cultos - ESTILO CLEAN ATUALIZADO */
     .grid {
       display:grid;
       gap:18px;
-      justify-content:center;
+      justify-content: center;
     }
     .cultos .grid {
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     }
 
     .culto-card {
-      background:var(--card-bg);
-      border:1px solid var(--glass-border);
+      background: transparent; 
+      border: none; 
+      box-shadow: none; 
+      
       border-radius:14px;
-      padding:18px;
-      box-shadow:0 6px 18px rgba(16,24,40,0.04);
-      transition:transform .28s, box-shadow .28s;
-      text-align:left;
+      padding:18px 0; 
+      transition:transform .28s, opacity .28s; 
+      text-align:center;
     }
+
+    /* Efeito sutil ao passar o mouse */
     .culto-card:hover {
-      transform:translateY(-6px);
-      box-shadow:0 14px 38px rgba(16,24,40,0.08);
+      transform:translateY(-2px); 
+      background-color: rgba(44,82,130,0.03); 
     }
-    .culto-card h3 {font-size:1.05rem;margin-bottom:6px;}
-    .culto-card p {color:var(--muted);font-size:0.98rem;}
+
+    /* Estilo do Título (Local) */
+    .culto-card h3 {
+      font-size:1.15rem; 
+      font-family:'Cormorant Garamond',serif; 
+      color:var(--text); 
+      margin-bottom:4px;
+    }
+
+    /* Estilo do Horário */
+    .culto-card p {
+      color:var(--accent); 
+      font-weight: 600; 
+      font-size:1rem; 
+    }
+
+    /* Adicionando um separador visual entre os cartões */
+    @media (min-width: 600px) {
+        .culto-card {
+            border-right: 2px solid rgba(44,82,130,0.1);
+        }
+        .cultos .grid > *:last-child {
+            border-right: none;
+        }
+    }
 
     /* Pastores */
     .pastor-card {
@@ -231,15 +304,15 @@
       justify-content:center;
     }
     .aviso-card {
-      width:260px;
+      width:500px;
       background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,250,250,0.9));
       border:1px solid var(--glass-border);
       border-radius:12px;
       padding:16px;
       cursor:pointer;
-      box-shadow:0 6px 18px rgba(16,24,40,0.04);
+      box-shadow:0 16px 18px rgba(16,24,40,0.04);
       transition:transform .22s ease, box-shadow .22s ease;
-      text-align:left;
+      text-align:center;
     }
     .aviso-card:hover {
       transform:translateY(-6px);
@@ -301,7 +374,7 @@
       margin-top:40px;
       text-align:center;
       color:var(--muted);
-      font-size:0.9rem;
+      font-size:0.6rem;
     }
 
     /* Animações */
@@ -319,7 +392,6 @@
 <body>
   <div class="container">
 
-    <!-- Header -->
     <header class="header aparecer">
       <div class="overlay" aria-hidden="true"></div>
       <div class="header-content">
@@ -338,32 +410,11 @@
 
 
 
-    <!-- Anúncios -->
-   <!-- <section class="anuncios aparecer">
-      <h2>Anúncios</h2>
-      <div class="anuncios-container">
-        <div class="cartaz">
-          <img src="5EF86BC1-251A-4483-8F0C-834F18B08EE4.jpeg" alt="Cartaz de anúncio">
-        </div>
-        <div class="info">
-          <p><strong>Título do Anúncio:</strong> Festa de Confraternização</p>
-          <p><strong>Data:</strong> Domingo, 03/11/2025</p>
-          <p><strong>Horário:</strong> 14h às 18h</p>
-          <p><strong>Local:</strong> Sede da igreja</p>
-          <p>Traga sua família e amigos para celebrarmos juntos!</p>
-        </div>
-      </div>
-    </section>-->
-
-
-
-
-    <!-- Cultos -->
     <section class="cultos aparecer">
       <h2>Horários de Cultos</h2>
       <div class="grid">
         <div class="culto-card aparecer-esq">
-          <h3>Sede</h3>
+          <h3>Sede (Água Fria)</h3>
           <p>Domingo e Sexta às 19h</p>
         </div>
         <div class="culto-card aparecer-dir">
@@ -376,35 +427,77 @@
         </div>
         <div class="culto-card aparecer-dir">
           <h3>Escola Bíblica Dominical</h3>
-          <p>Sede e Congregações: Todo Domingo às 8h</p>
+          <p>Sede e Congregações: Domingo às 8h</p>
         </div>
       </div>
     </section>
 
-    <!-- Pastores -->
+
+    <section class="anuncios aparecer">
+      <h2>ANÚNCIOS</h2>
+      <div class="anuncios-container">
+
+        <div class="anuncio-item aparecer">
+          <div class="cartaz">
+            <img src="F6A22741-82E9-4B14-ADD1-162B76037F7E.jpeg" alt="Cartaz de anúncio 1">
+          </div>
+          <div class="info">
+            <p><strong>Círculo de Oração</strong></p>
+            <p><strong>Data:</strong> Toda Terça-feira</p>
+            <p><strong>Horário:</strong> às 19 horas</p>
+            <p><strong>Local:</strong> Sede – Água Fria</p>
+            <p>Venha buscar a presença de Deus conosco!</p>
+            
+            <!--<a href="https://link-da-inscricao-ou-evento.com.br" target="_blank" class="anuncio-btn">saiba mais</a>-->
+            
+          </div>
+        </div>
+        <!--<div class="anuncio-item aparecer">
+          <div class="cartaz">
+            <img src="128C4901-FFD6-4721-BAAF-10B9B1C35266.jpeg" alt="Cartaz de anúncio 2">
+          </div>
+
+
+          <div class="info">
+            <p><strong>Congresso Unificado</strong></p>
+            <p><strong>Data:</strong> Domingo, 15/09/2026</p>
+            <p><strong>Horário:</strong> às 19 horas</p>
+            <p><strong>Local:</strong> Congregação Monte Horebe</p>
+            <p>Venha adorar a Deus!</p>
+            
+            <a href="https://link-do-formulario-de-contato.com.br" target="_blank" class="anuncio-btn">Saiba Mais</a>           
+          </div>-->
+
+
+        </div>
+        </div>
+    </section>
+
+
     <section class="pastores aparecer">
-      <h2>Quadro Ministerial</h2>
+      <h2>QUADRO MINISTERIAL</h2>
       <div class="pastor-card aparecer">
         <div class="pastor-foto">
           <img src="D0F3F6A8-55DC-461F-A173-EE01C9E1A642.jpeg" alt="Pr. Jonathas Guedes e Missionária Mara Guedes">
         </div>
         <div class="pastor-info">
-          <h3>Pr. Jonathas Guedes</h3>
-          <p>e Missionária Mara Guedes</p>
+          <h4>Pr. Jonathas Guedes</h4>
+          <h4>e Missionária Mara Guedes</h4>
         </div>
       </div>
     </section>
 
-    <!-- Avisos -->
-    <section class="avisos aparecer">
-      <h2>IMPORTANTE</h2>
-      <div class="avisos-container">
-        <!--<div class="aviso-card aparecer-dir" onclick="abrirItem('c.jpeg')">
-          <h3>Festa das Crianças</h3>
-          <p>Ver cartaz completo</p>
-        </div>-->
 
-        <div class="aviso-card aparecer" onclick="abrirItem('https://surveymars.com/q/78gedyMKo')">
+    <section class="avisos aparecer">
+      <h2>FALE CONOSCO</h2>
+      <div class="avisos-container">
+
+        <div class="aviso-card aparecer-dir" onclick="abrirItem('https://surveymars.com/q/y2XzgcumV')">
+          <h3>Deseja uma visita?</h3>
+          <p>Clique aqui para receber</p>
+        </div>
+
+        <div class="aviso-card aparecer-dir" onclick="abrirItem('https://surveymars.com/q/78gedyMKo')">
           <h3>Pedido de oração</h3>
           <p>Clique aqui para fazer seu pedido</p>
         </div>
@@ -414,7 +507,6 @@
 
 
 
-    <!-- Modal -->
     <div id="imageModal" class="modal">
       <div class="modal-inner">
         <button class="close" onclick="fecharModal()">&times;</button>
@@ -423,7 +515,6 @@
       </div>
     </div>
 
-    <!-- Versículo -->
     <section class="versiculo aparecer">
       <blockquote>“Mas os que esperam no Senhor renovarão as suas forças.”<br><span>Isaías 40:31</span></blockquote>
     </section>
